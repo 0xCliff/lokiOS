@@ -1,8 +1,8 @@
 [BITS 32]
 
-SECTION .asm
-
 GLOBAL _START
+
+EXTERN kernel_main
 
 CODE_SEG EQU 0x08
 DATA_SEG EQU 0x10
@@ -22,6 +22,8 @@ _START:
 	OR AL, 2
 	OUT 0x92, AL
 
+	CALL kernel_main
+	
 	JMP $
 
 TIMES 512-($ - $$) DB 0
